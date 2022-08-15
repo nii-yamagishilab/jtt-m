@@ -50,12 +50,12 @@ for split in 'dev' 'test'; do
     --batch_size 128 \
     --gpus 1
 
-  python ../../evaluate_classes.py \
+  python '../../evaluate_classes.py' \
     --gold_file "${data_dir}/${split}.jsonl" \
     --prob_file "${out_dir}/${split}.prob.npy" \
     --out_file "${out_dir}/eval.${split}.txt"
 
-  python ../../evaluate_groups.py \
+  python '../../evaluate_groups.py' \
     --gold_file "${data_dir}/${split}.jsonl" \
     --prob_file "${out_dir}/${split}.prob.npy" \
     --out_file "${out_dir}/eval.groups.${split}.txt"

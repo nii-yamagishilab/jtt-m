@@ -14,7 +14,7 @@ Then, from the `jtt-m` project root, run:
 pip install -r requirements.txt
 ```
 
-For further development or modification, we recommend installing `pre-commit':
+For further development or modification, we recommend installing `pre-commit`:
 ```bash
 pre-commit install
 ```

@@ -33,7 +33,7 @@ if [[ -d "${model_dir}" ]]; then
 fi
 
 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
-python ../../train.py \
+python '../../train.py' \
   --data_dir "${data_dir}" \
   --default_root_dir "${model_dir}" \
   --pretrained_model_name "${pretrained}" \
