@@ -23,7 +23,7 @@
 *.grad*
 *.lock
 tmp*
-_tmp*
+_*
 *output
 *_logs
 cached_*
