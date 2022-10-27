@@ -2,6 +2,7 @@ import math
 import warnings
 import pytorch_lightning as pl
 import torch
+from datetime import datetime
 from pytorch_lightning.utilities import rank_zero_info
 from transformers import (
     AutoConfig,
@@ -231,6 +232,8 @@ def generic_train(model, args, callbacks):
         **train_params,
     )
 
+    t_start = datetime.now()
     trainer.fit(model)
+    rank_zero_info(f"\nTraining took '{datetime.now() - t_start}'")
 
     return trainer
