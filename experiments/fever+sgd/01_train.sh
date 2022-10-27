@@ -44,7 +44,6 @@ python '../../train.py' \
   --cache_dir "/local/$(whoami)" \
   --overwrite_cache \
   --train_batch_size 32 \
-  --eval_batch_size 32 \
   --accumulate_grad_batches 1 \
   --learning_rate 2e-5 \
   --precision 16 \
