@@ -35,12 +35,9 @@ python '../../augment.py' \
   --df "${df}" \
   --up "${up}"
 
-# With probabilities
-for thres in 1.0 0.9; do
-  python '../../augment.py' \
-    --gold_file "${data_dir}/train.jsonl" \
-    --prob_file "${out_dir}/train.prob.npy" \
-    --aug_dir "${aug_dir}" \
-    --prob_thres "${thres}" \
-    --up "${up}"
-done
+# Without Mahalabobis
+python '../../augment.py' \
+  --gold_file "${data_dir}/train.jsonl" \
+  --prob_file "${out_dir}/train.prob.npy" \
+  --aug_dir "${aug_dir}" \
+  --up "${up}"

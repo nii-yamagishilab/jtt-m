@@ -37,7 +37,6 @@ def build_args():
 
 
 def main():
-    t_start = datetime.now()
     args = build_args()
 
     model = FactVerificationTransformer.load_from_checkpoint(
@@ -54,7 +53,10 @@ def main():
     model.hparams.save_penultimate_layer = args.save_penultimate_layer
     model.hparams.temperature = args.temperature
 
+    t_start = datetime.now()
     predictions = trainer.predict(model, get_dataloader(model, args))
+    t_delta = datetime.now() - t_start
+    rank_zero_info(f"Prediction took '{t_delta}'")
 
     probs, embs = [], []
     for p in predictions:
@@ -74,9 +76,6 @@ def main():
         )
         rank_zero_info(f"Save penultimate_layer to {emb_file}")
         np.save(emb_file, embs)
-
-    t_delta = datetime.now() - t_start
-    rank_zero_info(f"Prediction took '{t_delta}'")
 
 
 if __name__ == "__main__":

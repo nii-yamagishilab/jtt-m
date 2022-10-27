@@ -65,7 +65,6 @@ class BaseModel(PreTrainedModel):
         output_attentions=None,
         output_hidden_states=None,
         return_dict=None,
-        label_smoothing=0.0,
     ):
         if input_ids is not None:
             assert input_ids.dim() == 2  # batch x len
@@ -88,7 +87,7 @@ class BaseModel(PreTrainedModel):
 
         loss = None
         if labels is not None:
-            loss_fct = CrossEntropyLoss(label_smoothing=label_smoothing)
+            loss_fct = CrossEntropyLoss()
             loss = loss_fct(logits.view(-1, self.config.num_labels), labels.view(-1))
 
         return BaseModelOutput(

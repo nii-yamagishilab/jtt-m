@@ -3,7 +3,6 @@ import numpy as np
 import pytorch_lightning as pl
 import torch
 from argparse import Namespace
-from datetime import datetime
 from filelock import FileLock
 from pathlib import Path
 from torch.utils.data import TensorDataset, DataLoader
@@ -83,7 +82,7 @@ class FactVerificationTransformer(BaseTransformer):
         return [input_ids, attention_mask, token_type_ids, labels]
 
     def cached_feature_file(self, mode):
-        dirname = "rbfv_" + Path(self.hparams.data_dir).parts[-1]
+        dirname = "jttm_" + Path(self.hparams.data_dir).parts[-1]
         feat_dirpath = Path(self.hparams.cache_dir) / dirname
         feat_dirpath.mkdir(parents=True, exist_ok=True)
         pt = self.hparams.pretrained_model_name.replace("/", "__")
@@ -155,17 +154,12 @@ class FactVerificationTransformer(BaseTransformer):
 
     def build_inputs(self, batch):
         inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3]}
-
         if self.config.model_type not in {"distilbert", "bart"}:
             inputs["token_type_ids"] = (
                 batch[2]
                 if self.config.model_type in ["bert", "xlnet", "albert"]
                 else None
             )
-
-        if self.training:
-            if self.hparams.label_smoothing > 0.0:
-                inputs["label_smoothing"] = self.hparams.label_smoothing
         return inputs
 
     def training_step(self, batch, batch_idx):
@@ -226,7 +220,6 @@ class FactVerificationTransformer(BaseTransformer):
         parser.add_argument("--use_title", action="store_true")
         parser.add_argument("--no_init", nargs="+", default=[])
         parser.add_argument("--classifier_dropout_prob", type=float, default=0.1)
-        parser.add_argument("--label_smoothing", type=float, default=0.0)
         return parser
 
 
@@ -238,8 +231,6 @@ def build_args():
 
 
 def main():
-    t_start = datetime.now()
-
     args = build_args()
 
     if args.seed > 0:
@@ -273,9 +264,6 @@ def main():
         )
 
     generic_train(model, args, callbacks)
-
-    t_delta = datetime.now() - t_start
-    rank_zero_info(f"\nTraining took '{t_delta}'")
 
 
 if __name__ == "__main__":
