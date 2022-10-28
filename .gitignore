@@ -29,3 +29,4 @@ _*
 cached_*
 *-out
 experiments/data/*/LICENSE
+experiments-*
