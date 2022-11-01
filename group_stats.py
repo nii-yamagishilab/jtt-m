@@ -1,3 +1,7 @@
+# Copyright (c) 2022, Yamagishi Laboratory, National Institute of Informatics
+# Author: Canasai Kruengkrai (canasai@nii.ac.jp)
+# All rights reserved.
+
 import numpy as np
 import pandas as pd
 import sys
