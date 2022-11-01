@@ -1,3 +1,7 @@
+# Copyright (c) 2022, Yamagishi Laboratory, National Institute of Informatics
+# Author: Canasai Kruengkrai (canasai@nii.ac.jp)
+# All rights reserved.
+
 import argparse
 import numpy as np
 import pytorch_lightning as pl
