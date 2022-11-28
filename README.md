@@ -4,12 +4,15 @@ This is an implementation of our paper: [Outlier-Aware Training for Improving Gr
 If you find our code useful, please cite:
 
 ```bash
-@inproceedings{chen-2022-outlier,
-  title = "Outlier-Aware Training for Improving Group Accuracy Disparities",
-  author = "Chen, Li-Kuang and Kruengkrai, Canasai and Yamagishi, Junichi",
-  booktitle = "Proceedings of the 2nd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics and the 12th International Joint Conference on Natural Language Processing: Student Research Workshop",
-  year = "2022",
-  url = "https://arxiv.org/abs/2210.15183",
+@inproceedings{chen-etal-2022-outlier,
+    title = "Outlier-Aware Training for Improving Group Accuracy Disparities",
+    author = "Chen, Li-Kuang  and
+      Kruengkrai, Canasai  and
+      Yamagishi, Junichi",
+    booktitle = "Proceedings of the 2nd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics and the 12th International Joint Conference on Natural Language Processing: Student Research Workshop",
+    year = "2022",
+    pages = "54--60",
+    url = "https://aclanthology.org/2022.aacl-srw.8",
 }
 ```
 
